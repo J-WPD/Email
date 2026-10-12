@@ -1,0 +1,42 @@
+Inbox Companion prototype
+
+This bundle contains the Thunderbird add-on, two screenshots, and the source
+needed to run the optional AI companion. It contains synthetic previews and no
+personal mailbox, model keys, credentials, runtime profiles, or dependencies.
+
+INSTALL THE ADD-ON
+1. Extract this ZIP. Keep Inbox-Companion.xpi as a single file; do not unzip it.
+2. In Thunderbird 128+ (140 ESR recommended), open Add-ons and Themes.
+3. Open the menu/gear and choose Install Add-on From File.
+4. Select Inbox-Companion.xpi and review Thunderbird's permission prompt.
+5. Click the Inbox Companion toolbar button. It uses the accounts you have
+   already configured in your own Thunderbird.
+
+THE PREVIEWS
+previews/Thunderbird-preview.png shows the actual add-on with synthetic local mail.
+previews/Web-demo-preview.png shows the browser development sample inbox.
+
+OPTIONAL AI COMPANION
+Install Node.js 24 or later on the same computer as Thunderbird.
+Open a terminal in the extracted companion folder, then run:
+
+    npm ci
+    npm start
+
+The service runs locally on port 8765. Keep the terminal open. In the add-on's
+connection settings, enter the token from companion/.local/session-token.
+This private token is not an email password. Never post it or API keys in chat.
+
+AI generation additionally needs a running local Ollama server with the chosen
+model (default qwen3:4b), or the optional OpenAI configuration described in
+companion/README.md. Actual model inference and real-provider sync were not
+tested in the cloud. No sending or permanent deletion is automated.
+
+The source README uses /workspace/Email for cloud examples. On your computer,
+replace that location with your extracted companion folder. Do not run the
+Debian cloud native-validation helpers to install your personal Thunderbird.
+
+VALIDATION
+The add-on passed real Thunderbird 140 ESR synthetic-mail checks for reading,
+local categories, preserved tags, native reply drafts, archiving, and pairing.
+36 automated tests passed. See companion/docs/VALIDATION.md for exact limits.
