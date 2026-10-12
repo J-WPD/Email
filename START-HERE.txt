@@ -1,4 +1,4 @@
-Inbox Companion prototype
+Inbox Companion prototype 0.1.1 - OpenAI default
 
 This bundle contains the Thunderbird add-on, two screenshots, and the source
 needed to run the optional AI companion. It contains synthetic previews and no
@@ -27,10 +27,21 @@ The service runs locally on port 8765. Keep the terminal open. In the add-on's
 connection settings, enter the token from companion/.local/session-token.
 This private token is not an email password. Never post it or API keys in chat.
 
-AI generation additionally needs a running local Ollama server with the chosen
-model (default qwen3:4b), or the optional OpenAI configuration described in
-companion/README.md. Actual model inference and real-provider sync were not
-tested in the cloud. No sending or permanent deletion is automated.
+OpenAI is the default provider. Copy companion/.env.example to companion/.env,
+then enter your own OpenAI API key only in that private local file:
+
+    AI_PROVIDER=openai
+    AI_MODEL=gpt-4.1-mini
+    APP_AI_KEY=YOUR_OPENAI_API_KEY
+
+Restart the companion and use Check connection in the add-on settings.
+The OpenAI key stays in the companion; the add-on uses only the separate
+connection token. API billing is separate from a ChatGPT subscription.
+Selected email text is sent to OpenAI when you request an AI action.
+
+Ollama remains an optional local provider; see companion/README.md.
+Actual model inference and real-provider sync were not tested in the cloud.
+No sending or permanent deletion is automated.
 
 The source README uses /workspace/Email for cloud examples. On your computer,
 replace that location with your extracted companion folder. Do not run the
